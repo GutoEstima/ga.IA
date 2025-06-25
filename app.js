@@ -1,4 +1,4 @@
-        document.addEventListener('DOMContentLoaded', function () {
+            document.addEventListener('DOMContentLoaded', function () {
             // --- INICIALIZAÇÃO ---
             const loginScreen = document.getElementById('login-screen');
             const appScreen = document.getElementById('app-screen');
@@ -117,3 +117,35 @@
                weekPicker.addEventListener('change', generateHeatmapData);
             }
         });
+
+         // Seleciona o elemento onde a data será exibida
+        const elementoDataFuturaDois = document.getElementById('data-dois-dias');
+        const elementoDataFuturaTres = document.getElementById('data-tres-dias');
+
+        // Define quantos dias você quer adicionar
+        const diasParaAdicionarDois = 2;
+        const diasParaAdicionarTres = 3;
+
+        // Cria um objeto com a data de hoje
+        const dataFuturaDois = new Date();
+        const dataFuturaTres = new Date();
+
+        // ** A MÁGICA ACONTECE AQUI **
+        // Pega o dia de hoje, soma 2, e define como a nova data.
+        // O JavaScript ajusta o mês/ano se necessário.
+        dataFuturaDois.setDate(dataFuturaDois.getDate() + diasParaAdicionarDois);
+        dataFuturaTres.setDate(dataFuturaTres.getDate() + diasParaAdicionarTres);
+
+        // Formata a nova data para exibição
+        const opcoes = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        };
+        const dataFormatadaDois = dataFuturaDois.toLocaleDateString('pt-BR', opcoes);
+        const dataFormatadaTres = dataFuturaTres.toLocaleDateString('pt-BR', opcoes);
+
+        // Insere a data formatada no parágrafo
+        elementoDataFuturaDois.textContent = dataFormatadaDois;
+        elementoDataFuturaTres.textContent = dataFormatadaTres;
